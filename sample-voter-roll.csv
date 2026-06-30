@@ -1,0 +1,5 @@
+name,relative_name,age,gender,epic,state,district,assembly_constituency,part_no,serial_no,address
+Ravi Kumar,Suresh Kumar,42,M,ABC1234567,Delhi,New Delhi,New Delhi,12,101,House 10
+Ravi Kumar,Suresh Kumar,43,M,XYZ9876543,Uttar Pradesh,Noida,Noida,5,44,Flat 202
+Meena Devi,Ram Prasad,38,F,LMN1111111,Bihar,Patna,Patna Sahib,9,12,Street 4
+Meena Devi,Ram Prasad,38,F,LMN1111111,Bihar,Gaya,Gaya Town,2,77,Ward 3
