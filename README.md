@@ -8,11 +8,18 @@ Native Android app for checking whether a person appears in more than one import
 - Searches by voter name, relative name, EPIC number, age, gender, state, district, assembly constituency, and part number.
 - Flags exact duplicate EPIC numbers across different places.
 - Flags probable duplicate people using normalized name, relative name, age, and gender.
+- Opens the official ECI voter-services portal for live manual verification.
 - Runs offline on the device after CSV import.
 
 ## Data source note
 
 The Election Commission of India provides public voter-search and electoral-roll access through official portals, but this project intentionally does not scrape private web endpoints. Use legally obtained electoral-roll exports and convert PDFs or tables to CSV before importing.
+
+For live verification, the app opens the official voter-services portal:
+
+https://voters.eci.gov.in/
+
+Direct in-app live search requires an approved ECI API endpoint, credentials, rate limits, and data-use permission. The `LiveVoterService` class is a placeholder for that future official integration.
 
 Recommended CSV headers:
 

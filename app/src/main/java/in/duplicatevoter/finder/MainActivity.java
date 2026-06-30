@@ -1,6 +1,7 @@
 package in.duplicatevoter.finder;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -77,6 +78,17 @@ public class MainActivity extends Activity {
         });
         root.addView(importButton, matchWrap());
 
+        Button eciButton = button("Open ECI Voter Search", GREEN);
+        eciButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEciPortal();
+            }
+        });
+        LinearLayout.LayoutParams eciParams = matchWrap();
+        eciParams.setMargins(0, dp(10), 0, 0);
+        root.addView(eciButton, eciParams);
+
         status = text("", 14, MUTED, false);
         status.setPadding(0, dp(12), 0, dp(12));
         root.addView(status);
@@ -133,6 +145,15 @@ public class MainActivity extends Activity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("*/*");
         startActivityForResult(intent, PICK_CSV_REQUEST);
+    }
+
+    private void openEciPortal() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(LiveVoterService.OFFICIAL_VOTER_SERVICES_URL));
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException exception) {
+            showToast("No browser app found to open ECI Voter Search.");
+        }
     }
 
     private void importCsv(Uri uri) {
@@ -222,6 +243,7 @@ public class MainActivity extends Activity {
     private void addInfoCard() {
         results.removeAllViews();
         addResultHeader("CSV format", "Recommended headers: name, relative_name, age, gender, epic, state, district, assembly_constituency, part_no, serial_no, address.");
+        addResultHeader("Official ECI search", LiveVoterService.integrationStatus());
     }
 
     private void addResultHeader(String heading, String body) {
